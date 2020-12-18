@@ -1,0 +1,18 @@
+
+{% for complete in completes %}
+    <tr>
+    <th>1</th>
+    <td>{{complete.frozza_username}}</td>
+    <td>{{complete.withdraw_amount}}</td>
+    <td>{{complete.review}}</td>
+    <td>
+        {% if complete.status == True%}
+            Complete
+        {% else %}
+            Pending
+        {% endif %}
+    </td>
+    <td>{{complete.date}}</td>
+    </tr>
+{% endfor %}
+                                   

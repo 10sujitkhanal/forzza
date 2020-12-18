@@ -1,0 +1,192 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block main %}
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Welcome to ChatApp
+                <small>Pick a user and start chatting!</small>
+            </h1>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div id="user-list" class="list-group">
+                    <a href="" class="list-group-item disabled">
+                        <h4 class="list-group-item-heading">Users</h4>
+                        {# Users go here #}
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Chat</h4>
+                    </div>
+                    <div>
+                        <ul id="messages" class="messages">
+                            {# Messages go here #}
+                        </ul>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="input-group">
+                            <input id="chat-input" type="text"
+                                   class="form-control input"
+                                   placeholder="Type your message here ..."
+                                   maxlength="500">
+                            <span class="input-group-btn">
+                            <button class="btn btn-info btn"
+                                    id="btn-send">
+                                Send</button>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+<script>
+    let sessionKey = '{{ request.session.session_key }}';
+    let currentUser = '{{ request.user.username }}';
+</script>
+
+<script >
+        let currentRecipient = '';
+let chatInput = $('#chat-input');
+let chatButton = $('#btn-send');
+let userList = $('#user-list');
+let messageList = $('#messages');
+
+function updateUserList() {
+    $.getJSON('/msg/api/v1/user/', function (data) {
+        userList.children('.user').remove();
+        let count;
+        // for (let a = 0; a<data.length; a++){
+        //     if(data[a]['friend'] === 'all'){
+        //         count = 4;
+        //     }
+        //     else{
+        //         count = 3;
+        //     }
+        // }
+        for (let i = 0; i < data.length; i++) {
+            $.getJSON(`/msg/api/v1/message/?target=${data[i]['friend']}`, function (data) {
+                count = 1;
+
+
+            });
+
+            const userItem = `<a  class="list-group-item user">${data[i]['friend']}</a><span class="list-group-item">${count}</span>`;
+            $(userItem).appendTo('#user-list');
+        }
+        
+        $('.user').click(function () {
+            userList.children('.active').removeClass('active');
+            let selected = event.target;
+            $(selected).addClass('active');
+            setCurrentRecipient(selected.text);
+        });
+    });
+}
+
+
+function drawMessage(message) {
+    let position = 'left';
+    const date = new Date(message.timestamp);
+    if (message.user === currentUser) position = 'right';
+    const messageItem = `
+            <li class="message ${position}">
+                <div class="avatar">${message.user}</div>
+                    <div class="text_wrapper">
+                        <div class="text">${message.body}<br>
+                            <span class="small">${date}</span>
+                    </div>
+                </div>
+            </li>`;
+    $(messageItem).appendTo('#messages');
+}
+
+function getConversation(recipient) {
+    $.getJSON(`/msg/api/v1/message/?target=${recipient}`, function (data) {
+        messageList.children('.message').remove();
+        for (let i = data['results'].length - 1; i >= 0; i--) {
+            drawMessage(data['results'][i]);
+        }
+        messageList.animate({scrollTop: messageList.prop('scrollHeight')});
+    });
+
+}
+
+function getMessageById(message) {
+    id = JSON.parse(message).message
+    $.getJSON(`/msg/api/v1/message/${id}/`, function (data) {
+        if (data.user === currentRecipient ||
+            (data.recipient === currentRecipient && data.user == currentUser)) {
+            drawMessage(data);
+        }
+        messageList.animate({scrollTop: messageList.prop('scrollHeight')});
+    });
+}
+
+function sendMessage(recipient, body) {
+    $.post('/msg/api/v1/message/', {
+        recipient: recipient,
+        body: body
+    }).fail(function () {
+        alert('Error! Check console!');
+    });
+}
+
+function setCurrentRecipient(username) {
+    currentRecipient = username;
+    getConversation(currentRecipient);
+    enableInput();
+}
+
+
+function enableInput() {
+    chatInput.prop('disabled', false);
+    chatButton.prop('disabled', false);
+    chatInput.focus();
+}
+
+function disableInput() {
+    chatInput.prop('disabled', true);
+    chatButton.prop('disabled', true);
+}
+
+$(document).ready(function () {
+    updateUserList();
+    disableInput();
+
+//    let socket = new WebSocket(`ws://127.0.0.1:8000/?session_key=${sessionKey}`);
+    var socket = new WebSocket(
+        'ws://' + window.location.host +
+        '/ws?session_key=${sessionKey}')
+
+    chatInput.keypress(function (e) {
+        if (e.keyCode == 13)
+            chatButton.click();
+    });
+
+    chatButton.click(function () {
+        if (chatInput.val().length > 0) {
+            sendMessage(currentRecipient, chatInput.val());
+            chatInput.val('');
+        }
+    });
+
+    socket.onmessage = function (e) {
+        getMessageById(e.data);
+    };
+});
+
+
+
+
+    </script>
+
+{% endblock %}

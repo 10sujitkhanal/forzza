@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<div class="slider" id="main-slider" style="margin-top: -20px;">
+	<div class="slider-wrapper">
+		<img src="{% static 'header/header1.jpg' %}" alt="First" class="slide" />
+		<img src="{% static 'header/header2.png' %}" alt="Second" class="slide" />
+		<img src="{% static 'header/header3.jpg' %}" alt="Third" class="slide" />
+		<div class="col-lg-3 text-center" style="margin-top: 90px;"><div class="alert"><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+	  		Transfer Balance In this number(9816621340) Through Esewa or Khalti</div></div>
+		<div class="col-lg-6 text-center"></div>
+		{% for message in messages %}
+                   	<div class="col-lg-3 text-center" style="margin-top: 20px;"><div class="alert alert-success"><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+	  		{{ message }}</div></div>
+            	{% endfor %}
+	</div>
+	
+</div>	
+        
+        <script>
+        (function() {
+	
+	function Slideshow( element ) {
+		this.el = document.querySelector( element );
+		this.init();
+	}
+	
+	Slideshow.prototype = {
+		init: function() {
+			this.wrapper = this.el.querySelector( ".slider-wrapper" );
+			this.slides = this.el.querySelectorAll( ".slide" );
+			this.previous = this.el.querySelector( ".slider-previous" );
+			this.next = this.el.querySelector( ".slider-next" );
+			this.index = 0;
+			this.total = this.slides.length;
+			this.timer = null;
+			
+			this.action();
+			this.stopStart();	
+		},
+		_slideTo: function( slide ) {
+			var currentSlide = this.slides[slide];
+			currentSlide.style.opacity = 1;
+			
+			for( var i = 0; i < this.slides.length; i++ ) {
+				var slide = this.slides[i];
+				if( slide !== currentSlide ) {
+					slide.style.opacity = 0;
+				}
+			}
+		},
+		action: function() {
+			var self = this;
+			self.timer = setInterval(function() {
+				self.index++;
+				if( self.index == self.slides.length ) {
+					self.index = 0;
+				}
+				self._slideTo( self.index );
+				
+			}, 5000);
+		},
+		stopStart: function() {
+			var self = this;
+			self.el.addEventListener( "mouseover", function() {
+				clearInterval( self.timer );
+				self.timer = null;
+				
+			}, false);
+			self.el.addEventListener( "mouseout", function() {
+				self.action();
+				
+			}, false);
+		}
+		
+		
+	};
+	
+	document.addEventListener( "DOMContentLoaded", function() {
+		
+		var slider = new Slideshow( "#main-slider" );
+		
+	});
+	
+	
+})();
+
+        </script>
+
+<div id="catagories">
+<div id="portfolio" class="section wb" style="background: #F2F3F5;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">{% trans 'Catagory' %}</h2>
+            </div>
+        </div>
+        <div class="row">
+            {% for catagory in catagories %}
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a href="#portfolioModal1" class="portfolio-link"
+            data-toggle="modal"
+                onclick="ajax_popup_course_preview({{ catagory.id }});";>
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <i class="fa fa-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="{{ catagory.photo.url }}"
+                        class="img-responsive" alt="">
+                    
+                        </a>
+                <div class="portfolio-caption">
+                    <h4>{% trans catagory.title %}</h4>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<div id="bet" class="section wb">
+    <div class="container">
+        <div class="section-title text-center">
+            <h1>{% trans 'How to Bet' %}</h1>
+
+        </div><!-- end title -->
+    
+        <div class="row">
+		<ul>
+			<li><h5>Step 1: First You have to register here and you will be notify in gmail and notification panel</h5></li><br>
+			<li><h5>Step 2: Then You can Deposit the balance after login. You need to transfer the money in this number (9816621340) in khalti or esewa. for mor info <a href="{% url 'deposit:deposit' %}">click Here</a></h5></li><br>
+			<li><h5>Step 3: For Bet you can watch video which is below down or Go to the website <a href="https:\\www.forzza.com\" target="blank">Forzza.com</a></h5></li><br>
+			<li><h5>Step 4: Then You can Withdraw the balance through esewa or khalti. For more info <a href="{% url 'withdraw:withdraw' %}">click Here</a></h5></li><br>
+		</ul>
+            </div>
+	<div class="row">
+
+		<div class="col-md-6 col-sm-6 col-lg-4 portfolio-item">
+			<h3 class="section-heading">{% trans 'How to Bet' %}</h3>
+			<iframe width="853" height="480" src="https://www.youtube.com/embed/Rynfgxvwefw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+		<div class="col-md-6 col-sm-6 col-lg-4 portfolio-item">
+			<h3 class="section-heading">{% trans 'How to Deposit' %}</h3>
+			<iframe width="853" height="480" src="https://www.youtube.com/embed/J5EecrTCTCU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		</div>
+
+		<div class="col-md-6 col-sm-6 col-lg-4 portfolio-item">
+			<h3 class="section-heading">{% trans 'How to Withdraw' %}</h3>
+			<iframe width="853" height="480" src="https://www.youtube.com/embed/_MkKZC-Fgy0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		</div>
+	</div>
+    </div>
+</div>
+
+
+<br>
+
+
+
+<!-- Contact Us Section -->
+<section id="contact" style="background:#181818">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">{% trans 'Feedback' %}</h2>
+                <h3 class="section-subheading text-muted">{% trans 'Any comments, issues, or suggestions will be read by one of the staff' %}.</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <form action="{%url 'core:feedback' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form">
+                                <label id="fullname" class="text-white">{% trans 'Full Name' %}</label>
+                                <input class="form-control" type="text" name="fullname">
+                                <br>
+                                
+                            </div>
+                            <div class="form">
+                                <label class="text-white" id="email" class="form-label">{% trans 'Email' %}</label>
+                                <input class="form-control" type="text" name="email">
+                                <br>
+                            </div>
+                            <div class="form">
+                                <label class="text-white" id="question" class="form-label">{% trans 'Question' %}</label>
+                                <input class="form-control" type="text" name="question">
+                                <br>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                            <button type="submit" class="btn btn-primary">{% trans 'Send Message' %}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% for message in messages %}
+	<script>
+		$(".NOBbot").hide();
+		$(".chat_on").show(300);
+	</script>
+{% empty %}
+	<script>
+		$(".NOBbot").toggle();
+		$(".chat_on").hide(300);
+	</script>
+{% endfor %}
+
+{% endblock %}

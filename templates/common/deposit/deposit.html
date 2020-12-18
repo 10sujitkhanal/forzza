@@ -1,0 +1,96 @@
+{% extends 'adminbase.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+<script type="text/javascript">
+  function depositPending() {
+    $.ajax({
+        url: "{% url 'common:depositPending' %}",
+        success: function(data) {
+            $('#pending').html(data);
+        }
+    });
+}
+
+function depositComplete() {
+    $.ajax({
+        url: "{% url 'common:depositComplete' %}",
+        success: function(data) {
+            $('#complete').html(data);
+        }
+    });
+}
+
+$(document).ready(function($) {
+    depositPending();
+    depositComplete();
+    setInterval("depositPending()", 1000);
+    setInterval("depositComplete()", 1000);
+})
+
+</script>
+<div class="section wb">
+    <div class="gap gray-bg">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row" id="page-contents">
+                        {% include 'common/sidebar.html' %}
+                        <div class="col-lg-9">
+                            <div class="central-meta" id="history_page">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <center><h3>{% trans 'Pending Deposit' %}</h3></center>
+                                    </div>
+                                </div><br>
+                                <table id="myPending" class="table table-striped table-responsive table-hover">
+                                    <thead>
+                                      <tr>
+                                        <th scope="row">#</th>
+                                        <th scope="col">{% trans 'Username of Frozza' %}</th>
+                                        <th scope="col">{% trans 'Deposit Amount' %}</th>
+                                        <th scope="col">{% trans 'Review' %}</th>
+                                        <th scope="col">{% trans 'Photo' %}</th>
+                                        <th>{% trans 'Status' %}</th>
+                                        <th scope="col">{% trans 'Date' %}</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody id="pending">
+                                    
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="central-meta" id="history_page">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <center><h3>{% trans 'Complete Deposit' %}</h3></center>
+                                    </div>
+                                </div><br>
+                                <table id="myComplete" class="table table-striped table-responsive table-hover">
+                                    <thead>
+                                      <tr>
+                                        <th scope="row">#</th>
+                                        <th scope="col">{% trans 'Transaction Name of Frozza' %}</th>
+                                        <th scope="col">{% trans 'Transaction Amount' %}</th>
+                                        <th scope="col">{% trans 'Review' %}</th>
+                                        <th scope="col">{% trans 'Photo' %}</th>
+                                        <th>{% trans 'Status' %}</th>
+                                        <th scope="col">{% trans 'Date' %}</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody id="complete">
+                                    
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>           
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

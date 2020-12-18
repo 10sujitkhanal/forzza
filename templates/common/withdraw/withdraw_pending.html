@@ -1,0 +1,36 @@
+
+{% for pending in pendings %}
+    <tr>
+    <th>1</th>
+    <td>{{pending.frozza_username}}</td>
+    <td>{{pending.withdraw_amount}}</td>
+    <td>{{pending.review}}</td>
+    <td>
+        {% if pending.status == False %}
+            <button class="btn btn-danger pendingComplete" data-id="{{pending.id}}">Pending</button>
+        {% endif %}
+        <script type="text/javascript"> 
+            $( ".pendingComplete" ).click(function( event ) {
+                var id = $(this).attr('data-id');
+            $.ajax( 
+            { 
+                type:"POST", 
+                url: "{% url 'common:withdrawStatus' %}", 
+                data:{ 
+                    id: id,
+			csrfmiddlewaretoken: '{{csrf_token}}'
+            }, 
+            success: function( data ) 
+            {
+                
+        
+            }
+        
+        })
+        });
+           
+        </script>
+    </td>
+    <td>{{pending.date}}</td>
+    </tr>
+{% endfor %}

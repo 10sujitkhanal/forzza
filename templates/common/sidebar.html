@@ -1,0 +1,30 @@
+{% load i18n %}
+<div class="col-lg-3 hidden-xs hidden-sm">
+    <aside class="sidebar">
+        <div class="widget stick-widget">
+            <h4 class="widget-title">{% trans 'Sidebar' %}</h4>
+            <ul class="naves">
+                <li>
+                    <i class="ti-clipboard"></i>
+                    <a href="{% url 'common:adminDeposit' %}" title="">{% trans 'Deposit' %}</a>
+                </li>
+                <li>
+                    <i class="ti-user"></i>
+                    <a href="{% url 'common:adminWithdraw' %}" title="">{% trans 'Withdraw' %}</a>
+                </li>
+                <li>
+                    <i class="ti-bell"></i>
+                    <a href="{% url 'common:add-user' %}" title="">{% trans 'Add User' %}</a>
+                </li>
+                <li>
+                    <i class="ti-bell"></i>
+                    <a href="{% url 'common:request-user' %}" title="">{% trans 'Request Username' %}</a>
+                </li>
+                <li>
+                    <i class="ti-bell"></i>
+                    <a href="{% url 'common:adminFeedback' %}" title="">{% trans 'Feedback' %}</a>
+                </li>
+            </ul>
+        </div><!-- Shortcuts -->
+    </aside>
+</div><!-- sidebar -->

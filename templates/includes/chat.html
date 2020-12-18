@@ -1,0 +1,719 @@
+<style>
+
+
+/*===========================
+     CHAT BOOT MESSENGER
+   ===========================*/
+#Smallchat .Messages, #Smallchat .Messages_list {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+.chat_close_icon {
+   cursor:pointer;
+    color: #fff;
+    font-size:16px;
+    position: absolute;
+    right: 12px;
+    z-index: 9;
+}
+.chat_on {
+    position: fixed;
+    z-index: 10;
+    width: 45px;
+    height: 45px;
+    right: 15px;
+    bottom:20px;
+    background-color: #8a57cf;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    padding: 9px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+    cursor: pointer;
+    display: block;
+}
+.chat_on_icon{
+    color:#fff;
+    font-size:25px;
+    text-align:center;
+}
+/*
+#Smallchat,#Smallchat * {
+ box-sizing:border-box; 
+ -webkit-font-smoothing:antialiased;
+ -moz-osx-font-smoothing:grayscale;
+ -webkit-tap-highlight-color:transparent
+}
+*/
+#Smallchat .Layout { 
+ pointer-events:auto;
+ box-sizing:content-box!important;
+ z-index:999999999;
+ position:fixed;
+ bottom:20px;
+ min-width:50px;
+ max-width:300px;
+ max-height:30px;
+ display:-webkit-box;
+ display:-webkit-flex;
+ display:-ms-flexbox;
+ display:flex;
+ -webkit-box-orient:vertical;
+ -webkit-box-direction:normal;
+ -webkit-flex-direction:column;
+ -ms-flex-direction:column;
+ flex-direction:column;
+ -webkit-box-pack:end;
+ -webkit-justify-content:flex-end;
+ -ms-flex-pack:end;
+ justify-content:flex-end;
+ border-radius:50px;
+ box-shadow:5px 0 20px 5px rgba(0,0,0,.1);
+ -webkit-animation:appear .15s cubic-bezier(.25,.25,.5,1.1);
+ animation:appear .15s cubic-bezier(.25,.25,.5,1.1);
+ -webkit-animation-fill-mode:forwards;
+ animation-fill-mode:forwards;
+ opacity:0;
+ -webkit-transition:right .1s cubic-bezier(.25,.25,.5,1),bottom .1s cubic-bezier(.25,.25,.5,1),min-width .2s cubic-bezier(.25,.25,.5,1),max-width .2s cubic-bezier(.25,.25,.5,1),min-height .2s cubic-bezier(.25,.25,.5,1),max-height .2s cubic-bezier(.25,.25,.5,1),border-radius 50ms cubic-bezier(.25,.25,.5,1) .15s,background-color 50ms cubic-bezier(.25,.25,.5,1) .15s,color 50ms cubic-bezier(.25,.25,.5,1) .15s;
+ transition:right .1s cubic-bezier(.25,.25,.5,1),bottom .1s cubic-bezier(.25,.25,.5,1),min-width .2s cubic-bezier(.25,.25,.5,1),max-width .2s cubic-bezier(.25,.25,.5,1),min-height .2s cubic-bezier(.25,.25,.5,1),max-height .2s cubic-bezier(.25,.25,.5,1),border-radius 50ms cubic-bezier(.25,.25,.5,1) .15s,background-color 50ms cubic-bezier(.25,.25,.5,1) .15s,color 50ms cubic-bezier(.25,.25,.5,1) .15s
+     
+}
+
+#Smallchat .Layout-right {
+ right:20px
+}
+
+#Smallchat .Layout-open {
+ overflow:hidden;
+ min-width:300px;
+ max-width:300px;
+ height:500px;
+ max-height:500px;
+ border-radius:10px;
+ color:#fff;
+ -webkit-transition:right .1s cubic-bezier(.25,.25,.5,1),bottom .1s cubic-bezier(.25,.25,.5,1.1),min-width .2s cubic-bezier(.25,.25,.5,1.1),max-width .2s cubic-bezier(.25,.25,.5,1.1),max-height .2s cubic-bezier(.25,.25,.5,1.1),min-height .2s cubic-bezier(.25,.25,.5,1.1),border-radius 0ms cubic-bezier(.25,.25,.5,1.1),background-color 0ms cubic-bezier(.25,.25,.5,1.1),color 0ms cubic-bezier(.25,.25,.5,1.1);
+ transition:right .1s cubic-bezier(.25,.25,.5,1),bottom .1s cubic-bezier(.25,.25,.5,1.1),min-width .2s cubic-bezier(.25,.25,.5,1.1),max-width .2s cubic-bezier(.25,.25,.5,1.1),max-height .2s cubic-bezier(.25,.25,.5,1.1),min-height .2s cubic-bezier(.25,.25,.5,1.1),border-radius 0ms cubic-bezier(.25,.25,.5,1.1),background-color 0ms cubic-bezier(.25,.25,.5,1.1),color 0ms cubic-bezier(.25,.25,.5,1.1);
+}
+
+#Smallchat .Layout-expand {
+ height:500px;
+ min-height:500px;
+      display:none;
+}
+#Smallchat .Layout-mobile {
+ bottom:10px
+}
+#Smallchat .Layout-mobile.Layout-open {
+ width:calc(100% - 20px);
+ min-width:calc(100% - 20px)
+}
+#Smallchat .Layout-mobile.Layout-expand {
+ bottom:0;
+ height:100%;
+ min-height:100%;
+ width:100%;
+ min-width:100%;
+ border-radius:0!important
+}
+@-webkit-keyframes appear {
+ 0% {
+  opacity:0;
+  -webkit-transform:scale(0);
+  transform:scale(0)
+ }
+ to {
+  opacity:1;
+  -webkit-transform:scale(1);
+  transform:scale(1)
+ }
+}
+@keyframes appear {
+ 0% {
+  opacity:0;
+  -webkit-transform:scale(0);
+  transform:scale(0)
+ }
+ to {
+    opacity:1;
+  -webkit-transform:scale(1);
+  transform:scale(1)
+ }
+}
+#Smallchat .Messenger_messenger {
+ position:relative;
+ height:100%;
+ width:100%;
+ min-width:300px;
+ -webkit-box-orient:vertical;
+ -webkit-box-direction:normal;
+ -webkit-flex-direction:column;
+ -ms-flex-direction:column;
+ flex-direction:column
+}
+#Smallchat .Messenger_header,#Smallchat .Messenger_messenger {
+ display:-webkit-box;
+ display:-webkit-flex;
+ display:-ms-flexbox;
+ display:flex
+}
+#Smallchat .Messenger_header {
+ -webkit-box-align:center;
+ -webkit-align-items:center;
+ -ms-flex-align:center;
+ align-items:center;
+ padding-left:10px;
+ padding-right:40px;
+ height:40px;
+ -webkit-flex-shrink:0;
+ -ms-flex-negative:0;
+ flex-shrink:0
+}
+
+
+#Smallchat .Messenger_header h4 {
+ opacity:0;
+ font-size:16px;
+ -webkit-animation:slidein .15s .3s;
+ animation:slidein .15s .3s;
+ -webkit-animation-fill-mode:forwards;
+ animation-fill-mode:forwards
+}
+
+#Smallchat .Messenger_prompt {
+ margin:0;
+ font-size:16px;
+ line-height:18px;
+ font-weight:400;
+ overflow:hidden;
+ white-space:nowrap;
+ text-overflow:ellipsis
+}
+
+@-webkit-keyframes slidein {
+ 0% {
+  opacity:0;
+  -webkit-transform:translateX(10px);
+  transform:translateX(10px)
+ }
+ to {
+  opacity:1;
+  -webkit-transform:translateX(0);
+  transform:translateX(0)
+ }
+}
+@keyframes slidein {
+ 0% {
+  opacity:0;
+  -webkit-transform:translateX(10px);
+  transform:translateX(10px)
+ }
+ to {
+  opacity:1;
+  -webkit-transform:translateX(0);
+  transform:translateX(0)
+ }
+}
+#Smallchat .Messenger_content {
+    height: 450px;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+
+
+
+
+
+#Smallchat .Input {
+    position: relative;
+    width: 100%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    padding-top: 17px;
+    padding-bottom: 15px;
+    color: #96aab4;
+    background-color: #fff;
+    border-top: 1px solid #e6ebea;
+}
+#Smallchat .Input-blank .Input_field {
+    max-height: 20px;
+}
+#Smallchat .Input_field {
+    width: 100%;
+    resize: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-left: 20px;
+    padding-right: 75px;
+    background-color: transparent;
+    font-size: 16px;
+    line-height: 20px;
+    min-height: 20px !important;
+}
+#Smallchat .Input_button-emoji {
+    right: 45px;
+}
+#Smallchat .Input_button {
+    position: absolute;
+    bottom: 15px;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+#Smallchat .Input_button-send {
+    right: 15px;
+}
+#Smallchat .Input-emoji .Input_button-emoji .Icon, #Smallchat .Input_button:hover .Icon {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    -webkit-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
+}
+#Smallchat .Input-emoji .Input_button-emoji .Icon path, #Smallchat .Input_button:hover .Icon path {
+    fill: #2c2c46;
+}
+</style>
+<div class="container">
+	<div class="row">
+	 <div id="Smallchat">
+    <div class="Layout Layout-open Layout-expand Layout-right NOBbot" style="background-color: #3F51B5;color: rgb(255, 255, 255);opacity: 5;border-radius: 10px;">
+      <div class="Messenger_messenger">
+        <div class="Messenger_header" style="background-color: rgb(22, 46, 98); color: rgb(255, 255, 255);">
+          <h4 class="Messenger_prompt">NOB BOT</h4> <span class="chat_close_icon"><i class="fa fa-close" aria-hidden="true"></i></span> </div>
+        <div class="Messenger_content" >
+            <link rel="stylesheet" type="text/css" href="/static/dist/jquery.convform.css">
+           <link rel="stylesheet" type="text/css" href="/static/demo.css">
+            <div class="messages" id="messages">
+            <div id="chat" class="conv-form-wrapper">
+                <div class="panel-footer" style="margin-top: -150px;">
+                    Messi
+                </div>
+                <form action="" method="GET" class="hidden">
+		<input type="text" data-conv-question="This is the amazing betting site. You can bet here easily" data-no-answer="true">                 
+		<input type="text" data-conv-question="If you deposit more the chance to get reward and bonus is more. For deposit <a href='{% url 'deposit:deposit' %}'>Click Here</a>" data-no-answer="true">
+                    <select name="betting" data-callback="storeState" data-conv-question="Help in deposit, withdraw and how to bet. Please Click Below">
+                        <option value="deposit">Deposit</option>
+                        <option value="bet">How To Bet</option>
+                        <option value="withdraw">Withdraw</option>
+			<option value="forzza">Forzza Bet Here</option>
+                    </select>
+
+			<div data-conv-fork="betting">
+				<div data-conv-case="forzza">
+				    <input type="text" data-conv-question="If you want to go in forzza <a href='https://forzza.com' target='blank'>click here</a>" data-no-answer="true">
+				</div>
+			</div>
+
+			<div data-conv-fork="betting">
+				<div data-conv-case="bet">
+				    <input type="text" data-conv-question="First You have to register here and you will be notify in gmail and notification panel of p2pescrowbet" data-no-answer="true">
+					<input type="text" data-conv-question="Then You can Deposit the balance after login. You need to transfer the money in this number (<h4>9816621340</h4>) in khalti or esewa. for mor info <a href='{% url 'deposit:deposit' %}'>click Here</a></h5>" data-no-answer="true">
+					<input type="text" data-conv-question="For Bet you can watch video which is below down or Go to the website <a href='https:\\www.forzza.com\' target='blank'>Forzza.com</a></h5>" data-no-answer="true">
+					<input type="text" data-conv-question="Then You can Withdraw the balance through esewa or khalti. For more info <a href='{% url 'withdraw:withdraw' %}'>click Here</a></h5>" data-no-answer="true">
+				</div>
+			</div>
+
+                    <div data-conv-fork="betting">
+                        <div data-conv-case="deposit">
+                            <input type="text" data-conv-question="Firstly you have to send the balance through esewa or khalti in this number 9816621340 and take the screenshot of the finish page" data-no-answer="true">
+				<input type="text" data-conv-question="Submit the form. The form should be fill carefully. Read the caption of form and submit it. You have to select the photo that you screenshot" data-no-answer="true">
+				<input type="text" data-conv-question="After submit wait for a min your balance will be deposit in your forzza account" data-no-answer="true">
+				<input type="text" data-conv-question="For more info contact us. For contact <a href='{% url 'core:home' %}#contact'> click here.</a> You can watch the video below by <a href='{% url 'core:home' %}#bet'>clicking here</a>" data-no-answer="true">
+                        </div>
+                    </div>
+
+                    <div data-conv-fork="betting">
+                        <div data-conv-case="withdraw">
+                            <input type="text" data-conv-question="Firstly you to submit the form. The form should be fill carefully. Read the caption of form and submit it" data-no-answer="true">
+				<input type="text" data-conv-question="Your balance should be equal to or less than forzza account balance. Other your request will be dismiss.." data-no-answer="true">
+				<input type="text" data-conv-question="After submit wait for a min your balance will be sent in your esewa account" data-no-answer="true">
+				<input type="text" data-conv-question="For more info contact us. For contact <a href='{% url 'core:home' %}#contact'> click here.</a> You can watch the video below by <a href='{% url 'core:home' %}#bet'>clicking here</a>" data-no-answer="true">
+                        </div>
+                    </div>
+
+                    
+                    <select name="callbackTest" data-conv-question="Do you wanna see deposit, how to bet and withdraw again">
+                        <option value="yes" data-callback="rollback">Yes</option>
+                        <option value="no" data-callback="restore">No</option>
+                    </select>
+                    <select data-conv-question="Thanks for Visit" id="">
+                        <option value="">Awesome!</option>
+                    </select>
+                </form>
+            </div>
+          
+        </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--===============CHAT ON BUTTON STRART===============-->
+    <div class="chat_on user active" style="margin-bottom:35px;"> <span class="chat_on_icon"><i class="fa fa-comments" aria-hidden="true"></i></span> </div>
+    <!--===============CHAT ON BUTTON END===============-->
+  </div>
+	</div>
+</div>
+<script type="text/javascript" src="/static/dist/jquery.convform.js"></script>
+
+<script>
+
+    var rollbackTo = false;
+    var originalState = false;
+    function storeState(stateWrapper, ready) {
+        rollbackTo = stateWrapper.current;
+        console.log("storeState called: ",rollbackTo);
+        ready();
+    }
+    function rollback(stateWrapper, ready) {
+        console.log("rollback called: ", rollbackTo, originalState);
+        console.log("answers at the time of user input: ", stateWrapper.answers);
+        if(rollbackTo!=false) {
+            if(originalState==false) {
+                originalState = stateWrapper.current.next;
+                    console.log('stored original state');
+            }
+            stateWrapper.current.next = rollbackTo;
+            console.log('changed current.next to rollbackTo');
+        }
+        ready();
+    }
+    function restore(stateWrapper, ready) {
+        if(originalState != false) {
+            stateWrapper.current.next = originalState;
+            console.log('changed current.next to originalState');
+        }
+        ready();
+    }
+</script>
+<script>
+    jQuery(function($){
+        convForm = $('#chat').convform({selectInputStyle: 'disable'});
+        console.log(convForm);
+    });
+</script>
+
+<script>
+    $('#messages').animate({scrollTop: $('#messages').prop('scrollHeight')});
+    $(document).ready(function(){
+    $(".chat_on").click(function(){
+        $(".NOBbot").toggle();
+        $(".chat_on").hide(300);
+    });
+    
+       $(".chat_close_icon").click(function(){
+        $(".NOBbot").hide();
+           $(".chat_on").show(300);
+           
+    });
+    
+});
+
+// //links
+// //http://eloquentjavascript.net/09_regexp.html
+// //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+
+
+// var messages = [], //array that hold the record of each string in chat
+//   lastUserMessage = "", //keeps track of the most recent input string from the user
+//   botMessage = "", //var keeps track of what the chatbot is going to say
+//   botName = 'NOB', //name of the chatbot
+//   talking = true; //when false the speach function doesn't work
+// //
+// //
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //edit this function to change what the chatbot says
+// function chatbotResponse() {
+//   talking = true;
+
+//   if (lastUserMessage === 'hi' || lastUserMessage =='hello' || lastUserMessage =='Hello' || lastUserMessage =='Hello') {
+//     const hi = ['hi','howdy','hello','Good Morning']
+//     botMessage = hi[Math.floor(Math.random()*(hi.length))];;
+//   }
+
+//   if (lastUserMessage === 'morning' || lastUserMessage =='Morning' || lastUserMessage =='Good morning' || lastUserMessage =='good morning') {
+//     const hi = ['hi','howdy','hello','Good Morning']
+//     botMessage = hi[Math.floor(Math.random()*(hi.length))];;
+//   }
+
+//   if (lastUserMessage == 'name') {
+//     botMessage = 'My name is ' + 'Nepal Online Betting';
+//   }
+// }
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //
+// //
+// //
+// //this runs each time enter is pressed.
+// //It controls the overall input and output
+// function newEntry() {
+//   //if the message from the user isn't empty then run 
+//   if (document.getElementById("chatbox").value != "") {
+//     //pulls the value from the chatbox ands sets it to lastUserMessage
+//     lastUserMessage = document.getElementById("chatbox").value;
+//     //sets the chat box to be clear
+//     document.getElementById("chatbox").value = "";
+//     //adds the value of the chatbox to the array messages
+//     messages.push(lastUserMessage);
+//     //Speech(lastUserMessage);  //says what the user typed outloud
+//     //sets the variable botMessage in response to lastUserMessage
+//     chatbotResponse();
+//     //add the chatbot's name and message to the array messages
+//     messages.push("<b>" + botName + ":</b> " + botMessage);
+//     // says the message using the text to speech function written below
+//     Speech(botMessage);
+//     //outputs the last few array elements of messages to html
+//     for (var i = 1; i < 9; i++) {
+//       if (messages[messages.length - i])
+//         document.getElementById("chatlog" + i).innerHTML = messages[messages.length - i];
+//     }
+//   }
+// }
+
+// //text to Speech
+// //https://developers.google.com/web/updates/2014/01/Web-apps-that-talk-Introduction-to-the-Speech-Synthesis-API
+// function Speech(say) {
+//   if ('speechSynthesis' in window && talking) {
+//     var utterance = new SpeechSynthesisUtterance(say);
+//     //msg.voice = voices[10]; // Note: some voices don't support altering params
+//     //msg.voiceURI = 'native';
+//     //utterance.volume = 1; // 0 to 1
+//     //utterance.rate = 0.1; // 0.1 to 10
+//     //utterance.pitch = 1; //0 to 2
+//     //utterance.text = 'Hello World';
+//     //utterance.lang = 'en-US';
+//     speechSynthesis.speak(utterance);
+//   }
+// }
+
+// //runs the keypress() function when a key is pressed
+// document.onkeypress = keyPress;
+// //if the key pressed is 'enter' runs the function newEntry()
+// function keyPress(e) {
+//   var x = e || window.event;
+//   var key = (x.keyCode || x.which);
+//   if (key == 13 || key == 3) {
+//     //runs this function when enter is pressed
+//     newEntry();
+//   }
+//   if (key == 38) {
+//     console.log('hi')
+//       //document.getElementById("chatbox").value = lastUserMessage;
+//   }
+// }
+
+// //clears the placeholder text ion the chatbox
+// //this function is set to run when the users brings focus to the chatbox, by clicking on it
+// function placeHolder() {
+//   document.getElementById("chatbox").placeholder = "";
+// }
+// 
+</script> 
+
+<!-- 
+
+
+<script>
+    let sessionKey = '{{ request.session.session_key }}';
+    let currentUser = '{{ request.user.username }}';
+</script>
+<script >
+    let currentRecipient = '';
+let chatInput = $('#chat-input');
+let chatButton = $('#btn-send');
+let userList = $('#user-list');
+let messageList = $('#messages');
+
+function updateUserList() {
+$.getJSON('/msg/api/v1/user/', function (data) {
+    userList.children('.user').remove();
+    for (let i = 0; i < data.length; i++) {
+        const userItem = `<a class="list-group-item user">${data[i]['friend']}</a>`;
+        $(userItem).appendTo('#user-list');
+    }
+    $('.user').click(function () {
+        userList.children('.active').removeClass('active');
+        let selected = event.target;
+        $(selected).addClass('active');
+        setCurrentRecipient('all');
+    });
+});
+}
+
+function drawMessage(message) {
+let position = 'left';
+let padding = 'style="margin-left:40px; margin-top:15px;"';
+let user = 'NOB';
+const date = new Date(message.timestamp);
+if (message.user === currentUser) position = 'right';
+if (message.user === currentUser) padding = 'style="margin-right:40px; margin-top:15px;"';
+if (message.user === currentUser) user = 'You';
+const messageItem = `
+        <li class="message ${position}">
+            <div class="avatar" style="margin-top:17px;">${user}</div>
+                <div class="text_wrapper" ${padding}>
+                    <div class="text">${message.body}<br>
+                </div>
+            </div>
+        </li>`;
+$(messageItem).appendTo('#messages');
+}
+
+function getConversation(recipient) {
+$.getJSON(`/msg/api/v1/message/?target=${recipient}`, function (data) {
+    messageList.children('.message').remove();
+    for (let i = data['results'].length - 1; i >= 0; i--) {
+        drawMessage(data['results'][i]);
+    }
+    messageList.animate({scrollTop: messageList.prop('scrollHeight')});
+});
+
+}
+
+function getMessageById(message) {
+id = JSON.parse(message).message
+$.getJSON(`/msg/api/v1/message/${id}/`, function (data) {
+    if (data.user === currentRecipient ||
+        (data.recipient === currentRecipient && data.user == currentUser)) {
+        drawMessage(data);
+    }
+    messageList.animate({scrollTop: messageList.prop('scrollHeight')});
+});
+}
+
+function sendMessage(recipient, body) {
+$.post('/msg/api/v1/message/', {
+    recipient: recipient,
+    body: body
+}).fail(function () {
+    alert('Error! Check console!');
+});
+}
+
+function sendMessage1(recipient, body) {
+$.post('/msg/api/v1/Adminmessage/', {
+    recipient: recipient,
+    body: body
+}).fail(function () {
+    alert('Error! Check console!');
+});
+}
+
+function setCurrentRecipient(username) {
+currentRecipient = username;
+getConversation(currentRecipient);
+enableInput();
+}
+
+
+function enableInput() {
+chatInput.prop('disabled', false);
+chatButton.prop('disabled', false);
+chatInput.focus();
+}
+
+function disableInput() {
+chatInput.prop('disabled', true);
+chatButton.prop('disabled', true);
+}
+
+
+$(document).ready(function () {
+updateUserList();
+disableInput();
+
+//    let socket = new WebSocket(`ws://127.0.0.1:8000/?session_key=${sessionKey}`);
+var socket = new WebSocket(
+    'ws://' + window.location.host +
+    '/ws?session_key=${sessionKey}')
+
+chatInput.keypress(function (e) {
+    if (e.keyCode == 13)
+        chatButton.click();
+});
+
+chatButton.click(function () {
+    
+    if(chatInput.val() === "deposit" || chatInput.val() === "Deposit"){
+        sendMessage(currentRecipient, chatInput.val());
+        sendMessage1('all', 'You can deposite the balance here is the link Click <a href="http://localhost:8000/deposit">Here</a>');
+        chatInput.val('');
+    }
+    else if(chatInput.val() === "Goodmorning" || chatInput.val() === "goodmorning" || chatInput.val() === "good morning" || chatInput.val() === "Good Morning" || chatInput.val() === "Good morning"){
+        sendMessage(currentRecipient, chatInput.val());
+        sendMessage1('all', 'You can deposite the balance here is the link Click <a href="http://localhost:8000/withdraw">Here</a>');
+        chatInput.val('');
+    }
+    else if(chatInput.val() === "withdraw" || chatInput.val() === "Withdraw"){
+        sendMessage(currentRecipient, chatInput.val());
+        sendMessage1('all', 'You can deposite the balance here is the link Click <a href="http://localhost:8000/withdraw">Here</a>');
+        chatInput.val('');
+    }
+    else if(chatInput.val() === "detail" || chatInput.val() === "Detail"){
+        sendMessage(currentRecipient, chatInput.val());
+        sendMessage1('all', 'You can deposite the balance here is the link Click <a href="http://localhost:8000/bet">Here</a>');
+        chatInput.val('');
+    }
+    else if(chatInput.val() === "Thanks" || chatInput.val() === "thanks" || chatInput.val() === "thank you" || chatInput.val() === "Thank you" || chatInput.val() === "Thank You"){
+        sendMessage(currentRecipient, chatInput.val());
+        sendMessage1('all', 'You can deposite the balance here is the link Click <a href="http://localhost:8000/bet">Here</a>');
+        chatInput.val('');
+    }
+    else{
+        sendMessage(currentRecipient, chatInput.val());
+        sendMessage1('all', 'Sorry ask me only about this site');
+        chatInput.val('');
+        // if (chatInput.val().length > 0) {
+        // sendMessage(currentRecipient, chatInput.val());
+        // chatInput.val('');
+    }
+});
+
+socket.onmessage = function (e) {
+    getMessageById(e.data);
+};
+});
+
+
+
+
+</script> -->

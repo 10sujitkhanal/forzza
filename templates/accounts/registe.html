@@ -1,0 +1,420 @@
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<style>
+
+
+/*===========================
+     Register
+   ===========================*/
+#Registerbox .Register, #Registerbox .Register_list {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+.register_close_icon {
+   cursor:pointer;
+    color: #fff;
+    font-size:16px;
+    position: absolute;
+    right: 12px;
+    z-index: 9;
+}
+
+.register_on_icon{
+    color:#fff;
+    font-size:25px;
+    text-align:center;
+}
+/*
+#Smallchat,#Smallchat * {
+ box-sizing:border-box; 
+ -webkit-font-smoothing:antialiased;
+ -moz-osx-font-smoothing:grayscale;
+ -webkit-tap-highlight-color:transparent
+}
+*/
+#Registerbox .Layout { 
+ pointer-events:auto;
+ box-sizing:content-box!important;
+ z-index:999999999;
+ position:fixed;
+ bottom:20px;
+ min-width:50px;
+ max-width:300px;
+ max-height:30px;
+ display:-webkit-box;
+ display:-webkit-flex;
+ display:-ms-flexbox;
+ display:flex;
+ -webkit-box-orient:vertical;
+ -webkit-box-direction:normal;
+ -webkit-flex-direction:column;
+ -ms-flex-direction:column;
+ flex-direction:column;
+ -webkit-box-pack:end;
+ -webkit-justify-content:flex-end;
+ -ms-flex-pack:end;
+ justify-content:flex-end;
+ border-radius:50px;
+ box-shadow:5px 0 20px 5px rgba(0,0,0,.1);
+ -webkit-animation:appear .15s cubic-bezier(.25,.25,.5,1.1);
+ animation:appear .15s cubic-bezier(.25,.25,.5,1.1);
+ -webkit-animation-fill-mode:forwards;
+ animation-fill-mode:forwards;
+ opacity:0;
+ -webkit-transition:right .1s cubic-bezier(.25,.25,.5,1),bottom .1s cubic-bezier(.25,.25,.5,1),min-width .2s cubic-bezier(.25,.25,.5,1),max-width .2s cubic-bezier(.25,.25,.5,1),min-height .2s cubic-bezier(.25,.25,.5,1),max-height .2s cubic-bezier(.25,.25,.5,1),border-radius 50ms cubic-bezier(.25,.25,.5,1) .15s,background-color 50ms cubic-bezier(.25,.25,.5,1) .15s,color 50ms cubic-bezier(.25,.25,.5,1) .15s;
+ transition:right .1s cubic-bezier(.25,.25,.5,1),bottom .1s cubic-bezier(.25,.25,.5,1),min-width .2s cubic-bezier(.25,.25,.5,1),max-width .2s cubic-bezier(.25,.25,.5,1),min-height .2s cubic-bezier(.25,.25,.5,1),max-height .2s cubic-bezier(.25,.25,.5,1),border-radius 50ms cubic-bezier(.25,.25,.5,1) .15s,background-color 50ms cubic-bezier(.25,.25,.5,1) .15s,color 50ms cubic-bezier(.25,.25,.5,1) .15s
+     
+}
+
+#Registerbox .Layout-right {
+ right:20px
+}
+
+#Registerbox .Layout-open {
+ overflow:hidden;
+ min-width:200px;
+ max-width:300px;
+ height:500px;
+ max-height:500px;
+ border-radius:10px;
+ color:#fff;
+ -webkit-transition:right .1s cubic-bezier(.25,.25,.5,1),bottom .1s cubic-bezier(.25,.25,.5,1.1),min-width .2s cubic-bezier(.25,.25,.5,1.1),max-width .2s cubic-bezier(.25,.25,.5,1.1),max-height .2s cubic-bezier(.25,.25,.5,1.1),min-height .2s cubic-bezier(.25,.25,.5,1.1),border-radius 0ms cubic-bezier(.25,.25,.5,1.1),background-color 0ms cubic-bezier(.25,.25,.5,1.1),color 0ms cubic-bezier(.25,.25,.5,1.1);
+ transition:right .1s cubic-bezier(.25,.25,.5,1),bottom .1s cubic-bezier(.25,.25,.5,1.1),min-width .2s cubic-bezier(.25,.25,.5,1.1),max-width .2s cubic-bezier(.25,.25,.5,1.1),max-height .2s cubic-bezier(.25,.25,.5,1.1),min-height .2s cubic-bezier(.25,.25,.5,1.1),border-radius 0ms cubic-bezier(.25,.25,.5,1.1),background-color 0ms cubic-bezier(.25,.25,.5,1.1),color 0ms cubic-bezier(.25,.25,.5,1.1);
+}
+
+#Registerbox .Layout-expand {
+ height:500px;
+ min-height:500px;
+      display:none;
+}
+#Registerbox .Layout-mobile {
+ bottom:10px
+}
+#Registerbox .Layout-mobile.Layout-open {
+ width:calc(100% - 20px);
+ min-width:calc(100% - 20px)
+}
+#Registerbox .Layout-mobile.Layout-expand {
+ bottom:0;
+ height:100%;
+ min-height:100%;
+ width:100%;
+ min-width:100%;
+ border-radius:0!important
+}
+@-webkit-keyframes appear {
+ 0% {
+  opacity:0;
+  -webkit-transform:scale(0);
+  transform:scale(0)
+ }
+ to {
+  opacity:1;
+  -webkit-transform:scale(1);
+  transform:scale(1)
+ }
+}
+@keyframes appear {
+ 0% {
+  opacity:0;
+  -webkit-transform:scale(0);
+  transform:scale(0)
+ }
+ to {
+    opacity:1;
+  -webkit-transform:scale(1);
+  transform:scale(1)
+ }
+}
+#Registerbox .Register_messenger {
+ position:relative;
+ height:100%;
+ width:100%;
+ min-width:300px;
+ -webkit-box-orient:vertical;
+ -webkit-box-direction:normal;
+ -webkit-flex-direction:column;
+ -ms-flex-direction:column;
+ flex-direction:column
+}
+#Registerbox .Register_header,#Registerbox .Register_messenger {
+ display:-webkit-box;
+ display:-webkit-flex;
+ display:-ms-flexbox;
+ display:flex
+}
+#Registerbox .Register_header {
+ -webkit-box-align:center;
+ -webkit-align-items:center;
+ -ms-flex-align:center;
+ align-items:center;
+ padding-left:10px;
+ padding-right:40px;
+ height:40px;
+ -webkit-flex-shrink:0;
+ -ms-flex-negative:0;
+ flex-shrink:0
+}
+
+
+#Registerbox .Register_header h4 {
+ opacity:0;
+ font-size:16px;
+ -webkit-animation:slidein .15s .3s;
+ animation:slidein .15s .3s;
+ -webkit-animation-fill-mode:forwards;
+ animation-fill-mode:forwards
+}
+
+#Registerbox .Register_prompt {
+ margin:0;
+ font-size:16px;
+ line-height:18px;
+ font-weight:400;
+ overflow:hidden;
+ white-space:nowrap;
+ text-overflow:ellipsis
+}
+
+@-webkit-keyframes slidein {
+ 0% {
+  opacity:0;
+  -webkit-transform:translateX(10px);
+  transform:translateX(10px)
+ }
+ to {
+  opacity:1;
+  -webkit-transform:translateX(0);
+  transform:translateX(0)
+ }
+}
+@keyframes slidein {
+ 0% {
+  opacity:0;
+  -webkit-transform:translateX(10px);
+  transform:translateX(10px)
+ }
+ to {
+  opacity:1;
+  -webkit-transform:translateX(0);
+  transform:translateX(0)
+ }
+}
+#Registerbox .Register_content {
+    height: 450px;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+
+
+
+
+
+</style>
+<div class="container">
+	<div class="row">
+	 <div id="Registerbox">
+    <div class="Layout Layout-open Layout-expand Layout-right register" style="background-color: #3F51B5;color: rgb(255, 255, 255);opacity: 5;border-radius: 10px;">
+      <div class="Register_messenger">
+        <div class="Register_header" style="background-color: rgb(22, 46, 98); color: rgb(255, 255, 255);">
+          <h4 class="Register_prompt">Register</h4> <span class="register_close_icon"><i class="fa fa-close" aria-hidden="true"></i></span> </div>
+        <div class="Register_content" >
+          <div class="col-lg-12">
+            <form method="post" action="{% url 'accounts:register' %}">
+                {% csrf_token %}
+		<div class="form-row">
+                    <label>First Name</label>
+                    <input class="form-control" type="text" required="required" name="firstname" placeholder="First Name"/>
+                </div>
+		<div class="form-row">
+                    <label>Last Name</label>
+                    <input class="form-control" type="text" required="required" name="lastname" placeholder="Last Name"/>
+                </div>
+                <div class="form-row">
+                    <label>Email</label>
+                    <input class="form-control" type="text" required="required" name="email" placeholder="Email"/>
+                </div>
+                <div class="form-row">
+			<label>Username</label>
+                    <input class="form-control" type="text" required="required" name="username" placeholder="Username"/>
+                </div>
+                <div class="form-row">
+		<label>Password</label><label>Email</label>
+                    <input class="form-control" type="password" required="required" name="password1" placeholder="Password"/>
+                </div>
+                <div class="form-row">
+		<label>Confirm Password</label>
+                    <input class="form-control" type="password" required="required" name="password2" placeholder="Confirm Password"/>
+                </div>
+                <div class="form-radio">
+                    <div class="radio">
+                        <label>
+                            <input class="form-control" type="radio" name="gender" checked="checked"/><i class="check-box"></i>Male
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input class="form-control" type="radio" name="gender"/><i class="check-box"></i>Female
+                        </label>
+                    </div>
+                </div>
+                <div class="submit-btns">
+                    <button class="mtr-btn signup" type="submit"><span>Register</span></button>
+                </div>
+                
+            </form>
+        </div>
+        </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--===============CHAT ON BUTTON END===============-->
+  </div>
+	</div>
+</div>
+
+<script>
+    $(document).ready(function(){
+    $(".register_on").click(function(){
+        $(".register").toggle();
+        $(".register_on").hide(300);
+    });
+    
+       $(".register_close_icon").click(function(){
+        $(".register").hide();
+           $(".register_on").show(300);
+    });
+    
+});
+
+// //links
+// //http://eloquentjavascript.net/09_regexp.html
+// //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+
+
+// var messages = [], //array that hold the record of each string in chat
+//   lastUserMessage = "", //keeps track of the most recent input string from the user
+//   botMessage = "", //var keeps track of what the chatbot is going to say
+//   botName = 'NOB', //name of the chatbot
+//   talking = true; //when false the speach function doesn't work
+// //
+// //
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //edit this function to change what the chatbot says
+// function chatbotResponse() {
+//   talking = true;
+
+//   if (lastUserMessage === 'hi' || lastUserMessage =='hello' || lastUserMessage =='Hello' || lastUserMessage =='Hello') {
+//     const hi = ['hi','howdy','hello','Good Morning']
+//     botMessage = hi[Math.floor(Math.random()*(hi.length))];;
+//   }
+
+//   if (lastUserMessage === 'morning' || lastUserMessage =='Morning' || lastUserMessage =='Good morning' || lastUserMessage =='good morning') {
+//     const hi = ['hi','howdy','hello','Good Morning']
+//     botMessage = hi[Math.floor(Math.random()*(hi.length))];;
+//   }
+
+//   if (lastUserMessage == 'name') {
+//     botMessage = 'My name is ' + 'Nepal Online Betting';
+//   }
+// }
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //****************************************************************
+// //
+// //
+// //
+// //this runs each time enter is pressed.
+// //It controls the overall input and output
+// function newEntry() {
+//   //if the message from the user isn't empty then run 
+//   if (document.getElementById("chatbox").value != "") {
+//     //pulls the value from the chatbox ands sets it to lastUserMessage
+//     lastUserMessage = document.getElementById("chatbox").value;
+//     //sets the chat box to be clear
+//     document.getElementById("chatbox").value = "";
+//     //adds the value of the chatbox to the array messages
+//     messages.push(lastUserMessage);
+//     //Speech(lastUserMessage);  //says what the user typed outloud
+//     //sets the variable botMessage in response to lastUserMessage
+//     chatbotResponse();
+//     //add the chatbot's name and message to the array messages
+//     messages.push("<b>" + botName + ":</b> " + botMessage);
+//     // says the message using the text to speech function written below
+//     Speech(botMessage);
+//     //outputs the last few array elements of messages to html
+//     for (var i = 1; i < 9; i++) {
+//       if (messages[messages.length - i])
+//         document.getElementById("chatlog" + i).innerHTML = messages[messages.length - i];
+//     }
+//   }
+// }
+
+// //text to Speech
+// //https://developers.google.com/web/updates/2014/01/Web-apps-that-talk-Introduction-to-the-Speech-Synthesis-API
+// function Speech(say) {
+//   if ('speechSynthesis' in window && talking) {
+//     var utterance = new SpeechSynthesisUtterance(say);
+//     //msg.voice = voices[10]; // Note: some voices don't support altering params
+//     //msg.voiceURI = 'native';
+//     //utterance.volume = 1; // 0 to 1
+//     //utterance.rate = 0.1; // 0.1 to 10
+//     //utterance.pitch = 1; //0 to 2
+//     //utterance.text = 'Hello World';
+//     //utterance.lang = 'en-US';
+//     speechSynthesis.speak(utterance);
+//   }
+// }
+
+// //runs the keypress() function when a key is pressed
+// document.onkeypress = keyPress;
+// //if the key pressed is 'enter' runs the function newEntry()
+// function keyPress(e) {
+//   var x = e || window.event;
+//   var key = (x.keyCode || x.which);
+//   if (key == 13 || key == 3) {
+//     //runs this function when enter is pressed
+//     newEntry();
+//   }
+//   if (key == 38) {
+//     console.log('hi')
+//       //document.getElementById("chatbox").value = lastUserMessage;
+//   }
+// }
+
+// //clears the placeholder text ion the chatbox
+// //this function is set to run when the users brings focus to the chatbox, by clicking on it
+// function placeHolder() {
+//   document.getElementById("chatbox").placeholder = "";
+// }
+// 
+</script> 
+
+
+

@@ -1,0 +1,50 @@
+
+{% for pending in pendings %}
+    <tr>
+    <th>1</th>
+    <td>{{pending.frozza_username}}</td>
+    <td>{{pending.deposit_amount}}</td>
+    <td>{{pending.review}}</td>
+    <td width="250"><center><img onmouseover="bigImg(this)" onmouseout="normalImg(this)" border="0" src="{{pending.photo.url}}" alt="{{request.user.username}}" width="40" height="40"></center></td>
+    
+    <td>
+        {% if pending.status == False %}
+            <button class="btn btn-danger pendingComplete" data-id="{{pending.id}}">Pending</button>
+        {% endif %}
+        <script type="text/javascript"> 
+            $( ".pendingComplete" ).click(function( event ) {
+                var id = $(this).attr('data-id');
+
+            $.ajax( 
+            { 
+                type:"POST", 
+                url: "{% url 'common:depositStatus' %}", 
+                data:{ 
+                    id: id,
+		    csrfmiddlewaretoken: '{{csrf_token}}'
+            }, 
+            success: function( data ) 
+            {
+                
+        
+            }
+        
+        })
+        });
+           
+        </script>
+    </td>
+    <td>{{pending.date}}</td>
+    </tr>
+{% endfor %}
+<script>
+function bigImg(x) {
+  x.style.height = "350px";
+  x.style.width = "350px";
+}
+
+function normalImg(x) {
+  x.style.height = "32px";
+  x.style.width = "32px";
+}
+</script>

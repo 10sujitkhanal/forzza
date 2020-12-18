@@ -1,0 +1,51 @@
+{% load i18n %}
+{% for pending in pendings %}
+<tr>
+<th>1</th>
+<td>{{pending.first_name}}</td>
+<td>{{pending.last_name}}</td>
+<td>{{pending.username}}</td>
+<td>{{pending.email}}</td>
+<td>{{pending.pw}}</td>
+<td>
+	<form method="post" >
+	{% csrf_token %}
+		<input type="hidden" class="form-control userid" value={{pending.id}} name="userid" required>
+		<input type="text" class="form-control forzzaUser" name="forzzaUser" placeholder="Forzza Username" required>
+		<input type="text" class="form-control forzzaPass" name="forzzaPass" placeholder="Forzza Password" required>
+    {% if pending.status == False %}
+            <button class="btn btn-danger pending">Pending</button>
+        {% endif %}
+	</form>
+          
+</td>
+<td>{{pending.date_joined}}</td>
+</tr>
+{% endfor %}
+        <script type="text/javascript"> 
+            $( "form").submit(function( event ) {
+		
+		var id = $('.userid').val();
+		var forzzaUser = $('.forzzaUser').val();
+		alert(forzzaUser);
+		var forzzaPass = $('.forzzaPass').val();
+            $.ajax( 
+            { 
+                type:"POST", 
+                url: "{% url 'common:completeUser' %}", 
+                data:{ 
+                    id: id,
+			forzzaUser : forzzaUser,
+			forzzaPass : forzzaPass,
+			csrfmiddlewaretoken: '{{csrf_token}}'
+            }, 
+            success: function( data ) 
+            {
+                
+        
+            }
+        
+        })
+        });
+           
+        </script>                     

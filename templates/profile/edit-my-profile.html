@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="section">
+        <div class="gap gray-bg">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row" id="page-contents">
+                            <div class="col-lg-3">
+                            </div> 
+                            <div class="col-lg-6">
+                                <div class="central-meta">
+                                    <div class="editing-info">
+					
+					<div class="text-center"><div class="alert"> 
+				  		<a href="https://www.forzza.com" target="_blank">Click here</a> to login in forzza</div></div>
+                                        <h5 class="f-title"><i class="ti-info-alt"></i>Username and Password of Forzza</h5>
+
+                                            <div class="form-row">
+                                                <div class="form col-md-6">
+                                                    <label for="forzza_username">Username</label>
+                                                    <input type="text" id="forzza_username" class="form-control" value="{{ profile.forzza_username }}" readonly="readonly">
+                                                </div>
+                                                <div class="form col-md-6">
+                                                    <label for="forzza_password">Password</label>
+                                                    <input type="text" id="forzza_password" class="form-control" value="{{ profile.forzza_password }}" readonly="readonly">
+                                                </div>
+                                            </div><br>                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <aside class="sidebar static">
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+		
+		<div class="row">
+                    <div class="col-lg-12">
+                        <div class="row" id="page-contents">
+                            <div class="col-lg-3">
+                            </div> 
+                            <div class="col-lg-6">
+                                <div class="central-meta">
+                                    <div class="editing-info">
+                                        <h5 class="f-title"><i class="ti-info-alt"></i> Edit Basic Information</h5>
+
+                                        <form method="post" action="">
+                                            {% csrf_token %}
+                                            <div class="form-row">
+                                                <div class="form col-md-6">
+                                                    <label for="deposit">First Name</label>
+                                                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Firstname" value="{{ request.user.first_name }}">
+                                                </div>
+                                                <div class="form col-md-6">
+                                                    <label for="username">Last Name</label>
+                                                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Lastname" value="{{ request.user.last_name }}">
+                                                </div>
+                                            </div><br>
+                                            <div class="form">
+                                                <label for="review">Phone No.</label>
+                                                <input type="textarea" class="form-control" id="phone" name="phone" placeholder="Phone" value="{{ profile.phone }}">
+                                            </div>
+                                            <br>
+					<div class="form">
+                                                <label for="review">Email No.</label>
+                                                <input type="textarea" class="form-control" id="phone" name="phone" placeholder="Phone" value="{{ request.user.email }}" readonly="readonly">
+                                            </div>
+                                            <br>
+                                                
+                                            <div class="form-row">
+                                                <div class="form col-md-6">
+                                                    <label>
+                                                        <input class="form-control" type="radio" {% if request.user.gender == "male" %} checked="checked" {% endif %} name="gender" value="male"><i class="check-box"></i>Male
+                                                    </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <label>
+                                                        <input class="form-control" type="radio" {% if request.user.gender == "female" %} checked="checked" {% endif %} name="gender" value="male"><i class="check-box"></i>Female
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="form-row">
+                                                <div class="form col-md-6">
+                                                    <label for="deposit">Country</label>
+                                                    <input type="text" class="form-control" id="country" name="country" placeholder="Country" value="{{ profile.country }}">
+                                                </div>
+                                                <div class="form col-md-6">
+                                                    <label for="username">City</label>
+                                                    <input type="text" class="form-control" id="city" name="city" placeholder="City" value="{{ profile.city }}">
+                                                </div>
+                                            </div><br>
+                                            <br>
+                                            <button type="button" class="mtr-btn"><span>Cancel</span></button>
+                                            <button type="submit" class="mtr-btn"><span>Update</span></button>
+                                        </form>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <aside class="sidebar static">
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

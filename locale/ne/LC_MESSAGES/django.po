@@ -1,0 +1,299 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-05 13:30+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: socialnetwork/settings.py:145
+msgid "English"
+msgstr ""
+
+#: socialnetwork/settings.py:146
+msgid "Nepali"
+msgstr ""
+
+#: socialnetwork/settings.py:147
+msgid "Russian"
+msgstr ""
+
+msgid"Add User"
+msgstr"प्रयोगकर्ता थप्नुहोस्"
+
+#: socialnetwork/settings.py:148
+msgid "Esponial"
+msgstr ""
+
+msgid"Confirm Password"
+msgstr"पासवर्ड सुनिश्चित गर्नुहोस"
+
+msgid"Male"
+msgstr"नर"
+
+msgid"Female"
+msgstr"महिला"
+
+msgid"SuperUser"
+msgstr"सुपरयूजर"
+
+msgid"Delete"
+msgstr"मेटाउन"
+
+msgid"Staff"
+msgstr"कर्मचारी"
+
+msgid"Feedback"
+msgstr"प्रतिक्रिया"
+
+msgid"Full Name"
+msgstr"पुरा नाम"
+
+msgid"Question"
+msgstr"प्रश्न"
+
+msgid"Total User"
+msgstr"कुल प्रयोगकर्ता"
+
+msgid"Total Deposit"
+msgstr"कुल जम्मा"
+
+msgid"Pending Deposit"
+msgstr"बाँकी रहेको जम्मा"
+
+msgid"Total Withdraw"
+msgstr"कुल फिर्ता"
+
+msgid"Pending Withdraw"
+msgstr"साथ पेन्डि गर्दै"
+
+msgid"Complete Withdraw"
+msgstr"पूरा गर्नुहोस्"
+
+msgid "admin/"
+msgstr ""
+
+#: templates/base.html:130
+msgid "Nepal Online Betting"
+msgstr ""
+
+msgid"Complete Deposit"
+msgstr"पूर्ण जम्मा"
+
+msgid "How to Bet"
+msgstr "कसरी बेट गर्ने"
+
+msgid "VIEW MORE"
+msgstr "थप हेर्नुहोस्"
+
+msgid "view more"
+msgstr "थप हेर्नुहोस्"
+
+msgid "mark all as read"
+msgstr "सबै पढिएको रूपमा चिन्ह लगाउनुहोस्"
+
+msgid "SPORTS BETTING"
+msgstr "खेल शर्त"
+
+msgid "Request Username"
+msgstr "प्रयोगकर्तानामको अनुरोध"
+
+msgid "Complete Request Username"
+msgstr "अनुरोध अनुरोध पूरा गर्नुहोस्"
+
+msgid "Sidebar"
+msgstr "साइडबार"
+
+msgid "LIVE BETTING"
+msgstr "प्रत्यक्ष बेटिंग"
+
+msgid "CASINO GAMES"
+msgstr "क्यासिनो खेलहरू"
+
+msgid "LIVE CASINO"
+msgstr "प्रत्यक्ष केसिनो"
+
+msgid "VIRTUAL GAMES"
+msgstr "भर्चुअल खेलहरू"
+
+msgid "OUR TEAM"
+msgstr "हाम्रो समूह"
+
+msgid "Our Team"
+msgstr "हाम्रो समूह"
+
+msgid "Contact Us"
+msgstr "हामीलाई सम्पर्क गर्नुहोस"
+
+msgid "Any comments, issues, or suggestions will be read by one of the staff"
+msgstr "कुनै पनि टिप्पणी, मुद्दाहरू, वा सुझावहरू स्टाफ मध्ये एक जनाले पढ्नेछ।"
+
+msgid "Deposit History"
+msgstr "निक्षेप ईतिहास"
+
+msgid "How To Deposit"
+msgstr "कसरी जम्मा गर्ने"
+
+msgid "How to Deposit"
+msgstr "कसरी जम्मा गर्ने"
+
+
+msgid "DEPOSIT AMOUNT"
+msgstr "जम्मा राशि"
+
+msgid "Deposit Amount"
+msgstr "जम्मा राशि"
+
+msgid "Your Review"
+msgstr "तपाईंको समीक्षा"
+
+msgid "Review"
+msgstr "समीक्षा"
+
+msgid "Transaction Photo of Esewa or Khalti"
+msgstr "एसेवा वा खल्तीको लेनदेन फोटो"
+
+msgid "TRANSACTION HISTORY"
+msgstr "लेनदेन ईतिहास"
+
+msgid "Transaction History"
+msgstr "लेनदेन ईतिहास"
+
+msgid "Transaction Name of Frozza"
+msgstr "फ्रोज्जाको लेनदेन नाम"
+
+msgid "Transaction Amount"
+msgstr "लेनदेन राशि"
+
+msgid "	Review"
+msgstr "समीक्षा"
+
+msgid "Photo"
+msgstr "फोटो"
+
+msgid "Status"
+msgstr "स्थिति"
+
+msgid "Date"
+msgstr "मिति"
+
+msgid "STEP FOR DEPOSIT"
+msgstr "निक्षेप को लागी चरण"
+
+msgid "Withdraw History"
+msgstr "निकाल्नु ईतिहास"
+
+msgid "Step for Deposit"
+msgstr "निक्षेप को लागी चरण"
+
+
+msgid "Step"
+msgstr "चरण"
+
+msgid "WITHDRAW"
+msgstr "निकाल्नु"
+
+
+msgid "Withdraw Amount"
+msgstr "रकम फिर्ता लिनुहोस्"
+
+msgid "Username of Frozza"
+msgstr "फ्रोजनको प्रयोगकर्ता नाम"
+
+msgid"Username"
+msgstr"प्रयोगकर्ता नाम"
+
+msgid "HOW TO WITHDRAW"
+msgstr "कसरी फिर्ता लिने"
+
+msgid "How to Withdraw"
+msgstr "कसरी फिर्ता लिने"
+
+#: templates/base.html:166
+msgid "Deposit"
+msgstr "निक्षेप"
+
+msgid "Catagory"
+msgstr "क्याटागोरी"
+
+#: templates/base.html:166
+msgid "Catagories"
+msgstr "क्याटागोरीहरू"
+
+#: templates/common/password-reset/password_reset_email.html:2
+#, python-format
+
+#: templates/common/password-reset/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: templates/common/password-reset/password_reset_email.html:8
+msgid "Your username, in case you've forgotten:"
+msgstr ""
+
+#: templates/common/password-reset/password_reset_email.html:10
+
+#: templates/common/password-reset/password_reset_email.html:10
+msgid "Thanks for using our site!"
+msgstr ""
+
+#: templates/common/password-reset/password_reset_email.html:12
+#, python-format
+msgid "The %(site_name)s team"
+msgstr ""
+
+#: templates/common/password-reset/password_reset_subject.txt:2
+#, python-format
+msgid "Password reset on %(site_name)s"
+msgstr ""
+
+msgid "Withdraw"
+msgstr "निकाल्नु"
+
+msgid "Always Remember"
+msgstr "सधै सम्झनुहोस"
+
+msgid "Login with Facebook"
+msgstr "फेसबुकको साथ लगइन गर्नुहोस्"
+
+msgid "Login with Gmail"
+msgstr "जीमेलका साथ लगईन गर्नुहोस्"
+
+msgid "Forgot Password"
+msgstr "पासवर्ड भुल्नु भयो"
+
+msgid "Login"
+msgstr "लग - इन"
+
+msgid "Register"
+msgstr "रेजिष्टर"
+
+msgid "change password"
+msgstr "पासवर्ड परिवर्तन गर्नुहोस्"
+
+msgid "Change Password"
+msgstr "पासवर्ड परिवर्तन गर्नुहोस्"
+
+msgid "edit profile"
+msgstr "प्रोफाइल सम्पादन गर"
+
+msgid "Edit Profile"
+msgstr "प्रोफाइल सम्पादन गर"
+
+msgid "Send Message"
+msgstr "सन्देश पठाउनुहोस्"
+
+msgid "send message"
+msgstr "सन्देश पठाउनुहोस्"

@@ -1,0 +1,119 @@
+{% load i18n %}
+{% load notifications_tags %}
+{% load static %}
+{% load crispy_forms_tags %} 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+  <title>Admin Panel</title>
+
+  <link rel="stylesheet" href="{% static 'try/css/agency.css' %}">
+  <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+  <link rel="stylesheet" href="{% static 'css/color.css' %}">
+  <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  {% csrf_token %}
+
+</head>
+<body class="theme-layout">
+    <div class="topbar stick">
+        <div class="logo hidden-xs">
+            <a title="" href="/"><img src="{% static 'images/logo.png' %}" alt="" style="height: 70px; width: 90px"></a>
+        </div>
+        <div class="top-area"> 
+            <a style="margin-left: -20px;" class="logo hidden-sm hidden-md hidden-lg" title="" href="/"><img src="{% static 'images/logo.png' %}" alt="" style="height: 70px; width: 90px"></a>&nbsp;
+            {% if request.user.is_authenticated %}
+                <ul class="setting-area">
+                    <li class="hidden-sm hidden-md hidden-lg">
+                        <a href="#" title="{% trans 'Task' %}" data-ripple="">{% trans 'Admin Task' %}<i class="fas fa-sort-down"></i></a>
+                        <div class="dropdowns">
+                            <a href="{% url 'common:adminDeposit' %}" title="">{% trans 'Deposit' %}</a>
+                            <a href="{% url 'common:adminWithdraw' %}" title="" class="more-mesg" >{% trans 'Withdraw' %}</a>
+                            <a href="{% url 'common:add-user' %}" title="">{% trans 'Add User' %}</a>
+                            <a href="{% url 'common:request-user' %}" title="">{% trans 'Forzza Request User' %}</a>
+                            <a href="{% url 'common:adminFeedback' %}" title="">{% trans 'Feedback' %}</a>
+                        </div>
+                    </li>
+                </ul>
+                
+                <ul class="setting-area">
+                    <li>
+                        <a href="#" title="{% trans 'Notifications' %}" data-ripple=""><i class="fa fa-bell"></i><span id="total-like-comment-notifications">{% live_notify_badge %}</span></a>
+                        <div class="dropdowns" style="font-size:12px;">
+			<script src="{% static 'notifications/notify.js' %}" type="text/javascript"></script>
+                        {% register_notify_callbacks refresh_period=15 fetch=notifications_unread callbacks='fill_notification_badge,fill_notification_list' %}
+                        
+                            <ul class="drops-menu drop-content" id="like-comment-menu">
+				</ul>
+                            <a href="{% url 'notifications:mark_all_as_read' %}" id="mark-as-read"><i class="fa fa-eye"></i> Mark all as read</a>
+                         </div>
+                    </li>
+                </ul>
+
+                <div class="user-img">
+                    <img src="/media/avatars/guest.png" alt="" style="height: 40px; width: 40px;">
+                    <span class="status f-online"></span>
+                    <div class="user-setting">
+                        <a href="{% url 'profile:edit-profile' %}" title=""><i class="ti-pencil-alt"></i>{% trans 'Profile' %}</a>
+                        <a href="{% url 'profile:change-password' %}" title=""><i class="ti-pencil-alt"></i>{% trans 'Change Password' %}</a>
+                        <a href="{% url 'accounts:logout' %}" title=""><i class="ti-power-off"></i>{% trans 'Log out' %}</a>
+                    </div>
+                </div>
+            {% endif %}
+            <ul style="float: left;">
+                {% get_current_language as LANGUAGE_CODE %}
+                
+                    <form name=changePassword action="{% url 'change_language' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="path" value="{{page_url}}">
+                        <select name="language" onChange="changePassword.submit();">
+                            {% get_available_languages as LANGUAGES %}
+                            {% for language in LANGUAGES %}
+                                <option value="{{ language.0 }}" {% if language.0 == LANGUAGE_CODE %} selected="selected"{% endif %}>
+                                    {{ language.0|language_name_local }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+            </ul>
+        </div>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <div class="bottombar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="copyright">Copyright @2020 by S3</span>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+$(function(){
+ 	$('#myPending').DataTable();
+	$('#myComplete').DataTable();
+})
+
+
+
+</script>
+  
+  {% include 'includes/scripts.html' %}
+  {% block scripts %}{% endblock %}
+</body>
+
+</html>

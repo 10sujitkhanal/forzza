@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<div class="section wb">
+    <div class="gap gray-bg">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row" id="page-contents">
+                        {% include 'includes/deposit_sidebar.html' %}
+                        <div class="col-lg-9">
+                            <div class="central-meta" id="deposit_page">
+                                <div class="row">
+                                    <div class="col-md-12">
+					<div class="text-center"><div class="alert"><span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  					Transfer Balance In this number(9816621340) Through Esewa or Khalti</div></div>
+                                        <center><h3>{% trans 'Deposit Amount' %}</h3></center>
+                                    </div>
+                                </div><br>
+                                <form  method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="form-row">
+                                        <div class="form col-md-6">
+                                            <label for="deposit">{% trans 'Deposit Amount' %}</label>
+                                            <input type="number" class="form-control" id="deposit" name="deposit" placeholder="{% trans 'Deposit Amount' %}" required>
+                                        </div>
+                                        <div class="form col-md-6">
+                                            <label for="username">{% trans 'Username of Frozza' %}</label>
+                                            <input type="text" class="form-control" id="username" name="username" placeholder="{% trans 'Username of Frozza' %}" value="{{ profiles.forzza_username }}" required readonly="readonly">
+                                        </div>
+                                    </div><br>
+                                    <div class="form">
+                                        <label for="review">{% trans 'Your Review' %}</label>
+                                        <input type="textarea" class="form-control" id="review" name="review" placeholder="{% trans 'Your Review' %}" required>
+                                    </div>
+                                    <br>
+                                        
+                                    <div class="form-row">
+                                        <div class="form col-md-6">
+                                            <label for="photo">{% trans 'Transaction Photo of Esewa or Khalti' %}</label>
+                                            <input type="file" class="form-control" id="photo" name="photo" required>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">{% trans 'Deposit' %}</button>
+                                </form>
+                            </div>
+                            <div class="central-meta" id="history_page">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <center><h1>{% trans 'Transaction History' %}</h1></center>
+                                    </div>
+                                </div><br>
+
+                                <table id="myTable" class="table table-striped table-responsive table-hover">
+                                    <thead>
+                                      <tr>
+                                        <th>#</th>
+                                        <th >{% trans 'Username Frozza' %}</th>
+                                        <th >{% trans 'Amount' %}</th>
+                                        <th >{% trans 'Review' %}</th>
+                                        <th >{% trans 'Photo' %}</th>
+                                        <th >{% trans 'Status' %}</th>
+                                        <th >{% trans 'Date' %}</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for history in histories %}
+                                      <tr>
+                                        <th>1</th>
+                                        <td>{{history.frozza_username}}</td>
+                                        <td>{{history.deposit_amount}}</td>
+                                        <td>{{history.review}}</td>
+                                        <td width="250"><center><img onmouseover="bigImg(this)" onmouseout="normalImg(this)" border="0" src="media/{{history.photo}}" alt="{{request.user.username}}" width="40" height="40"></center></td>
+                                        <td>
+                                            {% if history.status == True %}
+                                                Complete
+                                            {% else %}
+                                                Pending
+                                            {% endif %}
+                                        </td>
+                                        <td>{{history.date}}</td>
+                                      </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="central-meta" id="how_page">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <center><h1>{% trans 'How to Deposit' %}</h1></center>
+                                    </div>
+                                </div><br>
+                                <h4>{% trans 'Step for Deposit' %}</h4>
+                                <ol>
+                                    <div class="row">
+                                        <li>{% trans 'Step' %} 1 : Firstly you have to send the balance through esewa or khalti in this number <h5>9816621340</h5> and take the screenshot of the finish page</li>
+                                    </div><br>
+                                    <div class="row">  
+                                        <li>{% trans 'Step' %} 2 : Submit the form. The form should be fill carefully. Read the caption of form and submit it. You have to select the photo that you screenshot</li>
+                                    </div><br>
+                                    <div class="row">
+                                        <li>{% trans 'Step' %} 3 : After submit wait for a min your balance will be deposit in your forzza account</li>
+                                    </div><br>
+                                    <div class="row">
+                                        <li>{% trans 'Step' %} 4 : For more info contact us. For contact <a href="{% url 'core:home' %}#contact"> click here.</a> You can watch the video below.</li>
+                                    </div><br>
+                                </ol>
+				<iframe width="853" height="480" src="https://www.youtube.com/embed/J5EecrTCTCU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                           </div>
+                        </div>
+                    </div>
+                </div>           
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+function bigImg(x) {
+  x.style.height = "350px";
+  x.style.width = "350px";
+}
+
+function normalImg(x) {
+  x.style.height = "32px";
+  x.style.width = "32px";
+}
+</script>
+   
+
+
+{% endblock %}

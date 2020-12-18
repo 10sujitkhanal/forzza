@@ -1,0 +1,30 @@
+
+{% for complete in completes %}
+    <tr>
+    <th>1</th>
+    <td>{{complete.frozza_username}}</td>
+    <td>{{complete.deposit_amount}}</td>
+    <td>{{complete.review}}</td>
+    <td width="250"><center><img onmouseover="bigImg(this)" onmouseout="normalImg(this)" border="0" src="{{complete.photo.url}}" alt="{{request.user.username}}" width="40" height="40"></center></td>
+    <td>
+        {% if complete.status == True%}
+            Complete
+        {% else %}
+            Pending
+        {% endif %}
+    </td>
+    <td>{{complete.date}}</td>
+    </tr>
+{% endfor %}
+<script>
+function bigImg(x) {
+  x.style.height = "350px";
+  x.style.width = "350px";
+}
+
+function normalImg(x) {
+  x.style.height = "32px";
+  x.style.width = "32px";
+}
+</script>
+                                   

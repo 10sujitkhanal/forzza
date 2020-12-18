@@ -1,0 +1,19 @@
+
+{% for complete in completes %}
+<tr>
+<th>1</th>
+<td>{{complete.first_name}}</td>
+<td>{{complete.last_name}}</td>
+<td>{{complete.username}}</td>
+<td>{{complete.email}}</td>
+<td>
+    {% if complete.complete == True %}
+        Complete
+    {% else %}
+        Uncomplete
+    {% endif %}
+</td>
+<td>{{complete.date_joined}}</td>
+</tr>
+{% endfor %}
+                               
