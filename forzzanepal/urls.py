@@ -22,7 +22,6 @@ urlpatterns += i18n_patterns(
     path('withdraw', include('withdraw.urls')),
     path('timeline/', include('userprofile.urls')),
     path('oauth/', include('social_django.urls', namespace='social')),
-    path('msg/', include('message.urls')),
     path('admins/', include('admin.common.urls')),
     prefix_default_language=False
  ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
